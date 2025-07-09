@@ -44,4 +44,14 @@ Backend (Kotlin):
 
 
 <br><br>
- Setting up the project
+
+# Setting up the project
+
+### Spring Boot
+1. Install Intellij IDEA
+2. Create new project
+3. Select Spring Boot project
+4. Follow Creation Wizard
+5. As Dependencies Select 
+   - Web &rarr; Spring Web
+   - SQL &rarr; Spring Data JDBC and H2 Database
