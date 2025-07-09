@@ -1,7 +1,6 @@
 # Project: Task Manager App
 
 ### Description:
-
 Create a simple task manager application where users can add, view, and delete tasks. The frontend will be built using React, and the backend will be built using Kotlin with Spring Boot.
 
 ### Features:
@@ -55,3 +54,10 @@ Backend (Kotlin):
 5. As Dependencies Select 
    - Web &rarr; Spring Web
    - SQL &rarr; Spring Data JDBC and H2 Database
+
+### React
+1. In Console do the following:
+   1. npx create-react-app frontend  
+   2. cd frontend 
+   3. npm start
+2. Detailed information is found in [.\frontend\README.md](./frontend/README.md)
