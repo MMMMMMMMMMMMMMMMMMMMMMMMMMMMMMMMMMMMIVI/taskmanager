@@ -25,21 +25,21 @@ Create a simple task manager application where users can add, view, and delete t
 
 Frontend (React):
 
-- Set up a React project using create-react-app or Vite.
-- Create a form component to add tasks.
-- Create a list component to display tasks.
-- Use fetch or axios to communicate with the backend API.
-- Add functionality to delete tasks.
+-[x] Set up a React project using create-react-app.
+-[x] Create a form component to add tasks.
+-[ ] Create a list component to display tasks.
+-[ ] Use fetch or axios to communicate with the backend API.
+-[ ] Add functionality to delete tasks.
 
 Backend (Kotlin):
 
-- Set up a Kotlin project using Spring Boot.
-- Create a Task data class with fields like id, title, description, and dueDate.
-- Implement REST endpoints:
-- GET /tasks - Fetch all tasks.
-- POST /tasks - Add a new task.
-- DELETE /tasks/{id} - Delete a task by ID.
-- Store tasks in a mutable list (in-memory storage).
+-[x] Set up a Kotlin project using Spring Boot.
+-[x] Create a Task data class with fields like id, title, description, and dueDate.
+-[ ] Implement REST endpoints:
+-[ ] GET /tasks - Fetch all tasks.
+-[ ] POST /tasks - Add a new task.
+-[ ] DELETE /tasks/{id} - Delete a task by ID.
+-[ ] Store tasks in a mutable list (in-memory storage).
 
 
 <br><br>
