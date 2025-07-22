@@ -1,9 +1,6 @@
 package com.example.demo.controller
 
-import com.example.demo.controller.allTasks
 import com.example.demo.controller.model.TaskModel
-import jakarta.annotation.PostConstruct
-import jakarta.annotation.PreDestroy
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import java.io.File
 
 val dbFile: File = File("backend/database/tasks.json")
@@ -36,9 +30,9 @@ class WebConfig : WebMvcConfigurer {
 class TaskController {
 
     @PostMapping("/new")
-    fun newTask(@RequestBody taskModel: TaskModel) {
-        allTasks.add(taskModel)
-        println("Saved {$taskModel}")
+    fun newTask(@RequestBody task: TaskModel) {
+        allTasks.add(task)
+        println("Saved ${task.id}")
     }
 
     @GetMapping("/all")

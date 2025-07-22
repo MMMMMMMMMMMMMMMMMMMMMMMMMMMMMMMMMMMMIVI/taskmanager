@@ -1,16 +1,20 @@
 import React from 'react';
 import { Modal, Button} from "react-bootstrap";
 
-function DeleteConfirmComp( props ) {
+function DeleteConfirmComp({ showModal, handleClose, deleteTask, task }) {
+
+    if (!task) {
+        return null;
+    }
 
     return(
-        <Modal show={props.showModal} onHide={props.handleClose}>
-            <Modal.Body>Are you sure you want to delete the Task ${props.data} ?</Modal.Body>
+        <Modal show={showModal} onHide={handleClose}>
+            <Modal.Body>Are you sure you want to delete the Task "{task.title}" ?</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.handleClose}>
+                <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="danger" onClick={() => props.deleteTask(props.data.id)}>
+                <Button variant="danger" onClick={() => deleteTask(task.id)}>
                     Delete
                 </Button>
             </Modal.Footer>

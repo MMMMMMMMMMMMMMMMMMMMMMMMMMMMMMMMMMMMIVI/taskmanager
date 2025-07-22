@@ -16,6 +16,7 @@ function AddTaskComp() {
       e.preventDefault();
       if (title && description) {
           console.log("New Task added: ", {title, description, dueDate, priority, status});
+          setMsg("Saving...")
 
           const taskData = {
               title,
@@ -46,12 +47,7 @@ function AddTaskComp() {
                   setPriority(0);
                   setStatus("");
                   setError(null)
-                  setMsg("Tasked saved")
-                  wait(1000).then((r) => {
-                      setMsg(null)
-                      window.location.href = "/overview"
-                  })
-
+                  window.location.href = "/overview"
               })
               .catch((error) => {
                   console.error('Error:', error);
@@ -59,7 +55,7 @@ function AddTaskComp() {
               });
       } else {
           setError("Not all required fields are filled out")
-          wait(3000).then((r) => setError(null))
+          wait(3000).then(() => setError(null))
       }
   };
 

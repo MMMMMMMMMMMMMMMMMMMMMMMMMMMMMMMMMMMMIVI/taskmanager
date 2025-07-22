@@ -6,10 +6,17 @@ import DeleteConfirmComp from "./DeleteConfirmComp";
 function OverviewComp() {
 
     const [tasks, setTasks] = useState([]);
-    const [show, setShow] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [taskToDelete, setTaskToDelete] = useState(null);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleDeleteClick = (task) => {
+        setTaskToDelete(task)
+        setShowDeleteModal(true)
+    };
+    const handleCloseDeleteModal = () => {
+        setTaskToDelete(null)
+        setShowDeleteModal(false)
+    };
 
     const getTasks = async () => {
         const response = await fetch('http://localhost:8080/task/all');
@@ -18,17 +25,24 @@ function OverviewComp() {
     }
 
     const deleteTask = async (id) => {
-        const response = await fetch(`http://localhost:8080/task/delete`, {
-            method: 'DELETE',
-                headers: {
-                'Content-Type': 'application/json',
-            },
-            body: id
-        })
 
-        if (response.ok) {
-            console.log(`Deleted ${id}`)
-            setTasks(tasks.filter(task => task.id !== id))
+        handleCloseDeleteModal()
+        try {
+            const response = await fetch(`http://localhost:8080/task/delete`, {
+                method: 'DELETE',
+                    headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: id
+            })
+            if (response.ok) {
+                console.log(`Deleted ${id}`)
+                setTasks(tasks.filter(task => task.id !== id))
+            } else {
+                console.error("Failed to delete task:", response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error("Error during delete API call:", error);
         }
     }
 
@@ -52,29 +66,32 @@ function OverviewComp() {
                                       <ListGroup.Item>{data.status}</ListGroup.Item>
                                   </ListGroup>
                               </Card.Text>
-                              <Row className="justify-content-between">
+                              <Row className={"justify-content-evenly"}>
                                   <Col>
                                       <Button variant="primary" size={"sm"} onClick={() => console.log(`Edit ${data.id}`)}>
                                           Edit
                                       </Button>
                                   </Col>
                                   <Col>
-                                      <Button variant="danger" size={"sm"} onClick={() => deleteTask(data.id)}>
+                                      <Button variant="danger" size={"sm"} onClick={() => handleDeleteClick(data)}>
                                           Delete
                                       </Button>
                                   </Col>
                               </Row>
                           </Card.Body>
-                          <DeleteConfirmComp
-                            showModal={show}
-                            handleClose={handleClose}
-                            deleteTask={deleteTask}
-                            data={data}
-                          />
                       </Card>
                   )
               })}
           </Row>
+          {
+              taskToDelete && (
+                <DeleteConfirmComp
+                    showModal={showDeleteModal}
+                    handleClose={handleCloseDeleteModal}
+                    deleteTask={deleteTask}
+                    task={taskToDelete}/>
+              )
+          }
       </>
   );
 }
