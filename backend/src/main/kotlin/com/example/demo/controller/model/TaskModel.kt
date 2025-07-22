@@ -1,9 +1,14 @@
 package com.example.demo.controller.model
 
+import kotlinx.serialization.Serializable
+import java.util.UUID
+
+@Serializable
 class TaskModel {
-    val title: String = ""
-    val description: String = ""
-    val dueDate: String = ""
-    val priority: Int = 0
-    val status: String = ""
+    val id: String = UUID.randomUUID().toString()
+    var title: String = ""
+    var description: String = ""
+    var dueDate: String = ""
+    var priority: String = ""
+    var status: String = ""
 }

@@ -1,15 +1,20 @@
-import React from 'react';
-import Navbar from "./Navbar";
-import Overview from "./Overview";
-import TaskForm from "./AddTask";
-
+import React, {useState} from 'react';
+import NavbarComp from "./NavbarComp";
+import OverviewComp from "./OverviewComp";
+import AddTaskComp from "./AddTaskComp";
 
 function App() {
+
+    const [currentView, setCurrentView] = useState("/overview")
+    const handleNavClick = (view) => { setCurrentView(view)}
+
     return (
-        <title>Task Manager</title>,
-        <Navbar/>,
-        <Overview/>,
-        <TaskForm />
+        <div>
+            <title>Task Manager</title>
+            <NavbarComp onNavClick={handleNavClick}/>
+            {currentView === "/overview" && <OverviewComp/>}
+            {currentView === "/addTask" && <AddTaskComp/>}
+        </div>
     )
 }
 
