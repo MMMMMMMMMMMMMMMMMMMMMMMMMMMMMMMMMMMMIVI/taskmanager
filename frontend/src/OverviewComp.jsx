@@ -60,10 +60,18 @@ function OverviewComp() {
                               <Card.Title>{data.title}</Card.Title>
                               <Card.Text>
                                   <ListGroup style={{ maxHeight: "20rem"}}>
-                                      <ListGroup.Item style={{ overflowY: "auto"}}>{data.description}</ListGroup.Item>
-                                      <ListGroup.Item>{data.dueDate}</ListGroup.Item>
-                                      <ListGroup.Item>{data.priority}</ListGroup.Item>
-                                      <ListGroup.Item>{data.status}</ListGroup.Item>
+                                      <ListGroup.Item style={{ overflowY: "auto", whiteSpace: "pre-wrap" }}>
+                                          {data.description}
+                                      </ListGroup.Item>
+                                      <ListGroup.Item>
+                                          {data.dueDate}
+                                      </ListGroup.Item>
+                                      <ListGroup.Item>
+                                          {data.priority}
+                                      </ListGroup.Item>
+                                      <ListGroup.Item>
+                                          {data.status}
+                                      </ListGroup.Item>
                                   </ListGroup>
                               </Card.Text>
                               <Row className={"justify-content-evenly"}>
