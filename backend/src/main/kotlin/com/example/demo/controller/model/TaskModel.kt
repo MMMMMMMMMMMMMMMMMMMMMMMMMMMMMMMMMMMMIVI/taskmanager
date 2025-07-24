@@ -5,7 +5,7 @@ import java.util.UUID
 
 @Serializable
 class TaskModel {
-    val id: String = UUID.randomUUID().toString()
+    var id: String = UUID.randomUUID().toString()
     var title: String = ""
     var description: String = ""
     var dueDate: String = ""

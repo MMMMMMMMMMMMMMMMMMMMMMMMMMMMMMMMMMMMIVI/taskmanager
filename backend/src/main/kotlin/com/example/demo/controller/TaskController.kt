@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import java.io.File
@@ -49,6 +50,17 @@ class TaskController {
         }
         allTasks.removeIf { it.id == id }
         println("after deletion:")
+        for (task in allTasks) {
+            println(task.id)
+        }
+    }
+
+    @PutMapping("/edit")
+    fun editTask(@RequestBody task: TaskModel) {
+        println("Editing task with id ${task.id}")
+        allTasks.removeIf { it.id == task.id }
+        allTasks.add(task)
+        println("after edit:")
         for (task in allTasks) {
             println(task.id)
         }

@@ -1,22 +1,35 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, ListGroup, Row, Col} from "react-bootstrap";
 import DeleteConfirmComp from "./DeleteConfirmComp";
+import EditComp from "./EditComp";
 
 
-function OverviewComp() {
+function OverviewComp({ switchView }) {
 
     const [tasks, setTasks] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [taskToDelete, setTaskToDelete] = useState(null);
+    const [taskToEdit, setTaskToEdit] = useState(null);
 
     const handleDeleteClick = (task) => {
         setTaskToDelete(task)
         setShowDeleteModal(true)
     };
-    const handleCloseDeleteModal = () => {
+    const handleDeleteClose = () => {
         setTaskToDelete(null)
         setShowDeleteModal(false)
     };
+
+    const handleEditClick = (task) => {
+        setTaskToEdit(task)
+        setShowEditModal(true)
+    }
+
+    const handleEditClose = () => {
+        setTaskToEdit(null)
+        setShowEditModal(false)
+    }
 
     const getTasks = async () => {
         const response = await fetch('http://localhost:8080/task/all');
@@ -26,11 +39,11 @@ function OverviewComp() {
 
     const deleteTask = async (id) => {
 
-        handleCloseDeleteModal()
+        handleDeleteClose()
         try {
             const response = await fetch(`http://localhost:8080/task/delete`, {
                 method: 'DELETE',
-                    headers: {
+                headers: {
                     'Content-Type': 'application/json',
                 },
                 body: id
@@ -43,6 +56,29 @@ function OverviewComp() {
             }
         } catch (error) {
             console.error("Error during delete API call:", error);
+        }
+    }
+
+    const editTask = async (task) => {
+
+        handleEditClose()
+        try {
+            console.log(`Editing task: ${task.id}\nStage: OverviewComp.jsx editTask()`)
+            const response = await fetch(`http://localhost:8080/task/edit`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(task)
+            })
+            if (response.ok) {
+                console.log(`Edited ${task.id}`)
+                switchView("overview")
+            }
+        }
+
+        catch (error) {
+            console.error("Error during edit API call:", error);
         }
     }
 
@@ -76,7 +112,7 @@ function OverviewComp() {
                               </Card.Text>
                               <Row className={"justify-content-evenly"}>
                                   <Col>
-                                      <Button variant="primary" size={"sm"} onClick={() => console.log(`Edit ${data.id}`)}>
+                                      <Button variant="primary" size={"sm"} onClick={() => handleEditClick(data)}>
                                           Edit
                                       </Button>
                                   </Col>
@@ -95,9 +131,20 @@ function OverviewComp() {
               taskToDelete && (
                 <DeleteConfirmComp
                     showModal={showDeleteModal}
-                    handleClose={handleCloseDeleteModal}
+                    handleClose={handleDeleteClose}
                     deleteTask={deleteTask}
-                    task={taskToDelete}/>
+                    task={taskToDelete}
+                />
+              )
+          }
+          {
+              taskToEdit && (
+                  <EditComp
+                      showModal={showEditModal}
+                      handleClose={handleEditClose}
+                      editTask={editTask}
+                      task={taskToEdit}
+                  />
               )
           }
       </>

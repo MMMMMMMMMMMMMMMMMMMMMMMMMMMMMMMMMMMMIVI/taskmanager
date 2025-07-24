@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
-import NavbarComp from "./NavbarComp";
-import OverviewComp from "./OverviewComp";
-import AddTaskComp from "./AddTaskComp";
+import NavbarComp from "./Components/NavbarComp";
+import OverviewComp from "./Components/OverviewComp";
+import AddTaskComp from "./Components/AddTaskComp";
 
 function App() {
 
-    const [currentView, setCurrentView] = useState("/overview")
-    const handleNavClick = (view) => { setCurrentView(view)}
+    const [currentView, setCurrentView] = useState("overview")
+    const switchView = (view) => { setCurrentView(view)}
 
     return (
         <div>
             <title>Task Manager</title>
-            <NavbarComp onNavClick={handleNavClick}/>
-            {currentView === "/overview" && <OverviewComp/>}
-            {currentView === "/addTask" && <AddTaskComp/>}
+            <NavbarComp onNavClick={switchView}/>
+            {currentView === "overview" ? (
+                <OverviewComp switchView={switchView}/>
+            ) : (
+                <AddTaskComp switchView={switchView}/>
+            )}
         </div>
     )
 }

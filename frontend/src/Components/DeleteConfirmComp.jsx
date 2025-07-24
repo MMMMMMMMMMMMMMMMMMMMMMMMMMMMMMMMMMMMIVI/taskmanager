@@ -9,7 +9,7 @@ function DeleteConfirmComp({ showModal, handleClose, deleteTask, task }) {
 
     return(
         <Modal show={showModal} onHide={handleClose}>
-            <Modal.Body>Are you sure you want to delete the Task "{task.title}" ?</Modal.Body>
+            <Modal.Header>Are you sure you want to delete the Task "{task.title}" ?</Modal.Header>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
