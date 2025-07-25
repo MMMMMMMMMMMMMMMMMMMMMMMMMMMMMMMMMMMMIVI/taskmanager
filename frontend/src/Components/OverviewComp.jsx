@@ -50,7 +50,7 @@ function OverviewComp({ switchView }) {
             })
             if (response.ok) {
                 console.log(`Deleted ${id}`)
-                setTasks(tasks.filter(task => task.id !== id))
+                await getTasks()
             } else {
                 console.error("Failed to delete task:", response.status, response.statusText);
             }
@@ -73,7 +73,7 @@ function OverviewComp({ switchView }) {
             })
             if (response.ok) {
                 console.log(`Edited ${task.id}`)
-                switchView("overview")
+                await getTasks()
             }
         }
 
