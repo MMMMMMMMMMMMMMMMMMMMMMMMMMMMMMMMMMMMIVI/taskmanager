@@ -27,19 +27,23 @@ Frontend (React):
 
 -[x] Set up a React project using create-react-app.
 -[x] Create a form component to add tasks.
--[ ] Create a list component to display tasks.
--[ ] Use fetch or axios to communicate with the backend API.
--[ ] Add functionality to delete tasks.
+-[x] Create a list component to display tasks.
+-[x] Use fetch to communicate with the backend API.
+-[x] Add functionality to delete tasks.
+-[x] Add functionality to edit tasks.
 
 Backend (Kotlin):
 
 -[x] Set up a Kotlin project using Spring Boot.
 -[x] Create a Task data class with fields like id, title, description, and dueDate.
--[ ] Implement REST endpoints:
--[ ] GET /tasks - Fetch all tasks.
--[ ] POST /tasks - Add a new task.
--[ ] DELETE /tasks/{id} - Delete a task by ID.
--[ ] Store tasks in a mutable list (in-memory storage).
+-[x] Implement REST endpoints:
+-[x] GET /task/all - Fetch all tasks.
+-[x] POST /task/new - Add a new task.
+-[x] DELETE /task/delete - Delete a task by ID.
+-[x] PUT /task/edit - Edit a task by ID
+-[x] Store tasks in a mutable list (in-memory storage).
+-[x] On Shutdown save list to JSON for persistent storage
+-[x] On Startup read out JSON and save it in-memory
 
 
 <br><br>
