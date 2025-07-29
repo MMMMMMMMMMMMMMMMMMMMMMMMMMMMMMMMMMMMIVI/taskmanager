@@ -4,7 +4,7 @@ import DeleteConfirmComp from "./DeleteConfirmComp";
 import EditComp from "./EditComp";
 
 
-function OverviewComp({ switchView }) {
+function OverviewComp() {
 
     const [tasks, setTasks] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
