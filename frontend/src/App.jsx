@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import NavbarComp from "./Components/NavbarComp";
-import OverviewComp from "./Components/OverviewComp";
-import AddTaskComp from "./Components/AddTaskComp";
+import AddTaskComp from "./Components/depricated_Components/AddTaskComp";
+import Navbar from "./Components/Navbar";
+import Overview from "./Components/Overview";
 
 function App() {
 
@@ -11,9 +11,9 @@ function App() {
     return (
         <div>
             <title>Task Manager</title>
-            <NavbarComp onNavClick={switchView}/>
+                <Navbar onNavClick={switchView}/>
             {currentView === "overview" ? (
-                <OverviewComp switchView={switchView}/>
+                <Overview/>
             ) : (
                 <AddTaskComp switchView={switchView}/>
             )}

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {wait} from "@testing-library/user-event/dist/utils";
 import TaskFormComp from "./TaskFormComp";
 
 function AddTaskComp({ switchView }) {
@@ -38,12 +37,12 @@ function AddTaskComp({ switchView }) {
                   }
                   return response.text();
               })
-              .then(data => {
+              .then(() => {
                   console.log("New Task added: ", {title, description, dueDate, priority, status});
                   setTitle("");
                   setDescription("");
                   setDueDate("");
-                  setPriority(0);
+                  setPriority("");
                   setStatus("");
                   setError(null)
                   switchView("overview")
@@ -54,7 +53,7 @@ function AddTaskComp({ switchView }) {
               });
       } else {
           setError("Not all required fields are filled out")
-          wait(3000).then(() => setError(null))
+          setTimeout(() => setError(null), 300)
       }
   };
 

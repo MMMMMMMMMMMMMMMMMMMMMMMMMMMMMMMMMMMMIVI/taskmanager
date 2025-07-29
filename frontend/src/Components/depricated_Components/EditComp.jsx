@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import TaskFormComp from "./TaskFormComp";
-import {wait} from "@testing-library/user-event/dist/utils";
 import {Modal} from "react-bootstrap";
 
 
@@ -29,7 +28,7 @@ function EditComp({ showModal, handleClose, editTask, task }) {
 
         } else {
             setError("Not all required fields are filled out")
-            wait(3000).then(() => setError(null))
+            setTimeout(() => setError(null), 3000)
         }
     };
 
